@@ -1,13 +1,10 @@
 from flask import Flask, request, render_template
-import pickle as pkl
+#import pickle as pkl
 import numpy as np
+import joblib
 
+model= joblib.load(r"E:\data sciences\origin\origin.joblib")
 # Load model and labels
-with open("orign.pkl", "rb") as file:
-    model = pkl.load(file)
-
-with open("labels.pkl", "rb") as file:
-    labels = pkl.load(file)
 
 app = Flask(__name__, template_folder='templete')
 
