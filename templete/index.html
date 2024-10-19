@@ -1,105 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diabetic Prediction</title>
-    <header>DOCTOR AI</header>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
-    {% if prediction is not none %}
-    <h2>Probability of Disease: {{ prediction }}</h2>
-    {% endif %}
-
-    <!-- Form for entering user data -->
-    <form id="dataForm">
-        <label for="gender">Gender</label><br>
-        <input type="number" id="gender" name="gender" required><br>
-
-        <label for="age">Age</label><br>
-        <input type="number" id="age" name="age" required><br>
-
-        <label for="urea">Urea</label><br>
-        <input type="number" id="urea" name="urea"><br>
-
-        <label for="creatinine">Creatinine</label><br>
-        <input type="number" id="creatinine" name="creatinine" required><br>
-
-        <label for="haemoglobin">Haemoglobin A1C</label><br>
-        <input type="number" id="haemoglobin" name="haemoglobin" required><br>
-
-        <label for="cholesterol">Cholesterol</label><br>
-        <input type="number" id="cholesterol" name="cholesterol" required><br>
-
-        <label for="triglycerides">Triglycerides</label><br>
-        <input type="number" id="triglycerides" name="triglycerides" required><br>
-
-        <label for="hdl">High-Density Lipoprotein</label><br>
-        <input type="number" id="hdl" name="hdl" required><br>
-
-        <label for="ldl">Low-Density Lipoprotein</label><br>
-        <input type="number" id="ldl" name="ldl" required><br>
-
-        <label for="vldl">Very Low-Density Lipoprotein</label><br>
-        <input type="number" id="vldl" name="vldl" required><br>
-
-        <label for="bmi">Body Mass Index (BMI)</label><br>
-        <input type="number" id="bmi" name="bmi" required><br><br>
-
-        <button type="submit">Submit</button>
-    </form>
-
-    <!-- Canvas for the chart -->
-    <div>
-        <canvas id="myChart"></canvas>
-    </div>
-
-    <script>
-        // Initialize an empty chart
-        const ctx = document.getElementById('myChart').getContext('2d');
-        const chart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Urea', 'Creatinine', 'Haemoglobin', 'Cholesterol', 'Triglycerides', 'HDL', 'LDL', 'VLDL', 'BMI'],
-                datasets: [{
-                    label: 'User Data',
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0], // Initial empty data
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-
-        // Handle form submission to update chart data
-        document.getElementById('dataForm').addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevent form from refreshing the page
-
-            // Collect values from form inputs
+<html>
+    <title>Diabetes Prediction</title>
+    <header>Diabetes WEB APP</header>
+    <body>
+        {% if prediction is not none%}
+        <h1>Prediction: {{prediction}}</h1>
+        {% endif%}
+        <form method="POST">
+            <label for="feature2">Gender </label><br><br>
+			<input type="number" name="feature2" required ><br>
+			<label for="feature3">Age </label><br><br>
+			<input type="number", name="feature3" required ><br>
+			<label for="feature100">Urea</label><br><br>
+			<input type="number" name="feature100" ><br>
+			<label for="feature4">Creatinine </label><br><br>
+			<input type="number" name="feature4" required ><br>
+			<label for="feature5">Ubranization </label><br><br>
+			<input type="number", name="feature5" required ><br>
+			<label for="feature6">HBA1C </label><br><br>
+			<input type="number" name="feature6" required><br>
+			<label for="feature7">Cholestral</label><br><br>
+			<input type="number", name="feature7" required><br>
+			<label for="feature8">Triglycerides</label><br><br>
+			<input type="number" name="feature8" required><br>
+			<label for="feature9">High-Density Lipoprotein</label><br><br>
+			<input type="number" name="feature9" required ><br>
+			<label for="feature10">Low-Density Lipoprotein </label><br><br>
+			<input type="number" name="feature10" required><br>
+			<label for="feature11">Very-Low Lipoprotein</label><br><br>
+			<input type="number" name="feature11" required ><br>
+			<label for="feature12">Body Mass Index </label><br><br>
+			<input type="number" name="feature12" required><br>
+			<label for="feature13">Class </label><br><br>
+			<input type="number" name="feature13" required><br><br><br>
             
-            const urea = parseFloat(document.getElementById('urea').value);
-            const creatinine = parseFloat(document.getElementById('creatinine').value);
-            const haemoglobin = parseFloat(document.getElementById('haemoglobin').value);
-            const cholesterol = parseFloat(document.getElementById('cholesterol').value);
-            const triglycerides = parseFloat(document.getElementById('triglycerides').value);
-            const hdl = parseFloat(document.getElementById('hdl').value);
-            const ldl = parseFloat(document.getElementById('ldl').value);
-            const vldl = parseFloat(document.getElementById('vldl').value);
-            const bmi = parseFloat(document.getElementById('bmi').value);
-
-            // Update chart data with form values
-            chart.data.datasets[0].data = [urea, creatinine, haemoglobin, cholesterol, triglycerides, hdl, ldl, vldl, bmi];
-            chart.update(); // Re-render the chart with new data
-        });
-    </script>
-
-</body>
+			<button>Predict</button>
+        </form>
+    </body>
 </html>

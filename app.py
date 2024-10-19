@@ -3,7 +3,7 @@ from flask import Flask, request, render_template
 import numpy as np
 import joblib
 
-model= joblib.load(r"E:\data sciences\origin\origin.joblib")
+model= joblib.load(r"E:\data sciences\origin\origin-hackton\ray.joblib")
 # Load model and labels
 
 app = Flask(__name__, template_folder='templete')
@@ -11,7 +11,7 @@ app = Flask(__name__, template_folder='templete')
 @app.route('/', methods=['GET', 'POST'])
 def predict():
     prediction = None
-    user_data = []
+    #user_data = []
     
     if request.method == 'POST':
         features = [float(x) for x in request.form.values()]
@@ -34,4 +34,4 @@ def predict():
     return render_template('index.html', prediction=prediction)
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
